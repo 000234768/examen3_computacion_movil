@@ -23,7 +23,7 @@ class ProductService extends ChangeNotifier {
       _baseUrl,
       'ejemplos/product_list_rest/',
     );
-    String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
+    String basicAuth = 'Basic ${base64Encode(utf8.encode('$_user:$_pass'))}';
     final response = await http.get(url, headers: {'authorization': basicAuth});
     final productsMap = Product.fromJson(response.body);
     print(response.body);
@@ -50,7 +50,7 @@ class ProductService extends ChangeNotifier {
       _baseUrl,
       'ejemplos/product_edit_rest/',
     );
-    String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
+    String basicAuth = 'Basic ${base64Encode(utf8.encode('$_user:$_pass'))}';
     final response = await http.post(url, body: product.toJson(), headers: {
       'authorization': basicAuth,
       'Content-Type': 'application/json; charset=UTF-8',
@@ -71,7 +71,7 @@ class ProductService extends ChangeNotifier {
       _baseUrl,
       'ejemplos/product_add_rest/',
     );
-    String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
+    String basicAuth = 'Basic ${base64Encode(utf8.encode('$_user:$_pass'))}';
     final response = await http.post(url, body: product.toJson(), headers: {
       'authorization': basicAuth,
       'Content-type': 'application/json; charset=UTF-8',
@@ -87,7 +87,7 @@ class ProductService extends ChangeNotifier {
       _baseUrl,
       'ejemplos/product_del_rest/',
     );
-    String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
+    String basicAuth = 'Basic ${base64Encode(utf8.encode('$_user:$_pass'))}';
     final response = await http.post(url, body: product.toJson(), headers: {
       'authorization': basicAuth,
       'Content-type': 'application/json; charset=UTF-8',
