@@ -1,27 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Autenticación',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: LoginPage(),
-    );
-  }
-}
-
 class LoginPage extends StatelessWidget {
+  LoginPage({super.key});
+  
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -38,7 +20,7 @@ class LoginPage extends StatelessWidget {
       // Si el inicio de sesión es exitoso, navega a la pantalla de inicio
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
       );
     } catch (error) {
       print('Error al iniciar sesión: $error');
@@ -47,14 +29,14 @@ class LoginPage extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Error'),
-            content: Text('Credenciales inválidas'),
+            title: const Text('Error'),
+            content: const Text('Credenciales inválidas'),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('Cerrar'),
+                child: const Text('Cerrar'),
               ),
             ],
           );
@@ -67,7 +49,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Inicio de sesión'),
+        title: const Text('Inicio de sesión'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -77,17 +59,17 @@ class LoginPage extends StatelessWidget {
           children: <Widget>[
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'Correo electrónico'),
+              decoration: const InputDecoration(labelText: 'Correo electrónico'),
             ),
             TextField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Contraseña'),
+              decoration: const InputDecoration(labelText: 'Contraseña'),
               obscureText: true,
             ),
-            SizedBox(height: 24.0),
+            const SizedBox(height: 24.0),
             ElevatedButton(
               onPressed: () => _signIn(context),
-              child: Text('Iniciar sesión'),
+              child: const Text('Iniciar sesión'),
             ),
           ],
         ),
@@ -97,13 +79,15 @@ class LoginPage extends StatelessWidget {
 }
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Inicio'),
+        title: const Text('Inicio'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('¡Has iniciado sesión correctamente!'),
       ),
     );

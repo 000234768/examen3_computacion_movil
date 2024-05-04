@@ -1,18 +1,21 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_application_1/screen/screen.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/pages.dart';
+import 'package:flutter_application_1/screen/screen.dart';
 
-// class AppRoutes {
-//   static const initialRoute = 'list';
-//   static Map<String, Widget Function(BuildContext)> routes = {
-//     'login': (BuildContext context) => const LoginScreen(),
-//     'list': (BuildContext context) => const ListProductScreen(),
-//     'edit': (BuildContext context) => const EditProductScreen(),
-//     'add_user': (BuildContext context) => const RegisterUserScreen(),
-//   };
+class AppRoutes {
+  static const initialRoute = 'login';
+  static Map<String, Widget Function(BuildContext)> routes = {
+    'login': (BuildContext context) => LoginPage(),
+    'carro_compras': (BuildContext context) => const CarroCompras(),
+    'detalle_producto': (BuildContext context) => const DetalleProducto(),
+    'pago': (BuildContext context) => const PaginaPago(),
+    'registro_cliente': (BuildContext context) => const RegistroCliente(),
+    'resultado_busqueda': (BuildContext context) => const ResultadoBusqueda(),
+  };
 
-//   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
-//     return MaterialPageRoute(
-//       builder: (context) => const ErrorScreen(),
-//     );
-//   }
-// }
+  static Route<dynamic> onGenerateRoute(RouteSettings settings) {
+    return MaterialPageRoute(
+      builder: (context) => const ErrorScreen(),
+    );
+  }
+}
