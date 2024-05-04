@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/pages.dart';
-import 'package:flutter_application_1/screen/screen.dart';
+import 'package:flutter_application_1/pages/ingreso_cliente.dart';
+import 'package:flutter_application_1/pages/home.dart';
 
-class AppRoutes {
-  static const initialRoute = 'login';
-  static Map<String, Widget Function(BuildContext)> routes = {
-    'login': (BuildContext context) => LoginPage(),
-    'carro_compras': (BuildContext context) => const CarroCompras(),
-    'detalle_producto': (BuildContext context) => const DetalleProducto(),
-    'pago': (BuildContext context) => const PaginaPago(),
-    'registro_cliente': (BuildContext context) => const RegistroCliente(),
-    'resultado_busqueda': (BuildContext context) => const ResultadoBusqueda(),
-  };
-
-  static Route<dynamic> onGenerateRoute(RouteSettings settings) {
-    return MaterialPageRoute(
-      builder: (context) => const ErrorScreen(),
-    );
+class AppRouter {
+  static const String initialRoute = '/ingreso_cliente'; 
+  static Route<dynamic> generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case '/':
+        return MaterialPageRoute(builder: (_) => LoginPage()); //raiz
+      case '/ingreso_cliente':
+        return MaterialPageRoute(builder: (_) => LoginPage());
+      case '/home':
+        return MaterialPageRoute(builder: (_) => HomePage());
+      default:
+        return MaterialPageRoute(
+          builder: (_) => Scaffold(
+            appBar: AppBar(
+              title: Text('Página no encontrada'),
+            ),
+            body: Center(
+              child: Text('La ruta ${settings.name} no existe en la aplicación.'),
+            ),
+          ),
+        );
+    }
   }
 }
