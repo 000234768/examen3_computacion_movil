@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../widgets/header.dart'; 
+import '../widgets/footer.dart'; 
 import 'home.dart'; 
 
 
 class LoginPage extends StatelessWidget {
-  LoginPage({Key? key}) : super(key: key);
+  LoginPage({super.key});
   
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -48,9 +49,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Inicio de sesión'),
-      ),
+      appBar: const MyHeader(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -70,11 +69,11 @@ class LoginPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () => _signIn(context),
               child: Text('Iniciar sesión'),
-            ),
+              ),
           ],
         ),
       ),
+      //bottomNavigationBar: const MyFooter(),
     );
   }
 }
-

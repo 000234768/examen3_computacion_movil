@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class MyHeader extends StatelessWidget implements PreferredSizeWidget {
+  const MyHeader({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
