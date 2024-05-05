@@ -54,7 +54,7 @@ class RegistroCliente extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           const Text(
-            'REGISTRO DE USUARIO',
+            'Registro de Usuario',
             style: TextStyle(
               fontSize: 20.0,
               fontWeight: FontWeight.bold,
