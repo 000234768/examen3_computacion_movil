@@ -27,7 +27,6 @@ class AppRouter {
           builder: (_) => Scaffold(
             appBar: AppBar(
               title: const Text('Página no encontrada'),
-              title: const Text('Página no encontrada'),
             ),
             body: Center(
               child: Text('La ruta ${settings.name} no existe en la aplicación.'),
