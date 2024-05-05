@@ -7,7 +7,7 @@ class MyLoginHeader extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-      height: kToolbarHeight + 20, // Altura fija de la barra de encabezado
+      height: kToolbarHeight + 10,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
