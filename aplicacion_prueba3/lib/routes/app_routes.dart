@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/ingreso_cliente.dart';
-import 'package:flutter_application_1/pages/home.dart';
+import 'package:flutter_application_1/pages/pages.dart';
 import 'package:flutter_application_1/pages/resultados.dart';
 
 class AppRouter {
