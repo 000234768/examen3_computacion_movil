@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_application_1/routes/app_routes.dart';
+import 'package:flutter_application_1/providers/carrito_compras.dart'; // Importa la clase CarritoCompras
+import 'package:provider/provider.dart'; // Importa el paquete provider
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await connectFirebase();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 Future<FirebaseApp> connectFirebase() async {
@@ -23,17 +25,18 @@ Future<FirebaseApp> connectFirebase() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Autenticación',
-      initialRoute: AppRouter.initialRoute,
-      onGenerateRoute: AppRouter.generateRoute,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ChangeNotifierProvider(
+      create: (context) => CarritoCompras(), // Crea una instancia de CarritoCompras
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Autenticación',
+        initialRoute: '/ingreso_cliente', // Cambia esta línea
+        onGenerateRoute: AppRouter.generateRoute,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
       ),
     );
   }
