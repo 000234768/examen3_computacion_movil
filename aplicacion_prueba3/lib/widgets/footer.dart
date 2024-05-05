@@ -6,33 +6,31 @@ class MyFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blue, 
+      color: Colors.blue,
       padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-      child: Column(
+      child: Row(
         children: [
           _buildFooterItem('CONTÁCTANOS: techstore@test.com'),
-          SizedBox(height: 10), 
-          _buildFooterLogo(), 
+          SizedBox(width: 10),
+          _buildFooterLogo(),
         ],
       ),
     );
   }
 
   Widget _buildFooterItem(String text) {
-    return Row(
-      children: [
-        Text(
-          text,
-          style: TextStyle(color: Colors.white),
-        ),
-        SizedBox(width: 5),
-      ],
+    return Flexible(
+      child: Text(
+        text,
+        style: TextStyle(color: Colors.white),
+        overflow: TextOverflow.ellipsis,
+      ),
     );
   }
 
   Widget _buildFooterLogo() {
     return Container(
-      color: Colors.white, 
+      color: Colors.white,
       child: Image.network(
         'https://firebasestorage.googleapis.com/v0/b/prueba3-72c15.appspot.com/o/logo.jpg?alt=media',
         width: 40,
