@@ -5,7 +5,7 @@ class CustomCard extends StatelessWidget {
   final double price;
   final String buttonText;
   final VoidCallback onPress;
-  final String Url;
+  final String url;
 
   const CustomCard({
     Key? key,
@@ -13,7 +13,7 @@ class CustomCard extends StatelessWidget {
     required this.price,
     required this.buttonText,
     required this.onPress,
-    required this.Url
+    required this.url
   }) : super(key: key);
 
   @override
@@ -28,11 +28,11 @@ class CustomCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Image.network(
-                Url,
+                url,
               ),
               Text(
                 title,
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.subtitle1,
               ),
               SizedBox(height: 10),
               Text(

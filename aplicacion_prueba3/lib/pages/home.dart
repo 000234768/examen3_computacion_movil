@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/widgets/header.dart';
 import 'package:flutter_application_1/widgets/footer.dart';
 import 'package:flutter_application_1/widgets/card.dart';
+import 'package:flutter_application_1/models/productos.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -48,21 +49,31 @@ class HomePage extends StatelessWidget {
                   );
                 }
                 final List<DocumentSnapshot> documents = snapshot.data!.docs;
+                final List<Listado> productos = documents.map((doc) {
+                  final Map<String, dynamic> data =
+                      doc.data() as Map<String, dynamic>;
+                  return Listado(
+                    productId: 0,
+                    productName: data['Nombre'] ?? 'Sin nombre',
+                    productPrice: (data['Costo'] as num?)?.toInt() ?? 0,
+                    productImage: data['Imagen'] ?? 'Sin imagen',
+                    productState:
+                        'Disponible', // Agrega el estado según lo que necesites
+                  );
+                }).toList();
+
                 return GridView.count(
-                    crossAxisCount: 2,
-                    childAspectRatio:
-                        0.7, // Ajusta este valor según tus necesidades
-                    children: documents.map((doc) {
-                      final Map<String, dynamic> data =
-                          doc.data() as Map<String, dynamic>;
-                      return CustomCard(
-                        title: data['Nombre'] ?? 'Sin nombre',
-                        price: data['Costo'] ?? 'Sin descripción',
-                        Url: data['Imagen'] ?? 'Sin imagen',
-                        buttonText: 'Agregar al carrito',
-                        onPress: () {},
-                      );
-                    }).toList(),
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.7,
+                  children: productos.map((producto) {
+                    return CustomCard(
+                      title: producto.productName,
+                      price: producto.productPrice.toDouble(),
+                      url: producto.productImage,
+                      buttonText: 'Agregar al carrito',
+                      onPress: () {},
+                    );
+                  }).toList(),
                 );
               },
             ),
