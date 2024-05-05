@@ -15,6 +15,24 @@ class MyHeader extends StatefulWidget implements PreferredSizeWidget {
 class _MyHeaderState extends State<MyHeader> {
   String searchTerm = '';
 
+  final Map<String, List<String>> searchTermsMapping = {
+    'raton': ['mouse'],
+    'mouse': ['mouse'],
+    'teclado': ['Teclados'],
+    'teclados': ['Teclados'],
+    'keyboard': ['Teclados'],
+    'pantalla': ['pantallas', 'perifericos'],
+    'pantallas': ['pantallas', 'perifericos'],
+    'perifericos': ['pantallas', 'perifericos'],
+    'periferico': ['pantallas', 'perifericos'],
+    'laptops': ['notebook'],
+    'laptop': ['notebook'],
+    'computador': ['notebook'],
+    'notebook': ['notebook'],
+    'computadora': ['notebook'],
+    'computadoras': ['notebook'],
+  };
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,20 +60,28 @@ class _MyHeaderState extends State<MyHeader> {
               IconButton(
                 icon: Icon(Icons.search, color: Colors.blue),
                 onPressed: () async {
-                  // Manejador de eventos del botón de búsqueda
-                  try {
-                    // Obtiene los detalles del producto utilizando la función getProductDetails
-                    Map<String, dynamic> resultado = await getProductDetails(searchTerm);
-                    // Navega a la página de resultados y muestra el resultado
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ResultadosPage(searchTerm: searchTerm, resultado: resultado),
-                      ),
-                    );
-                  } catch (e) {
-                    // Maneja errores aquí
-                    print('Error al obtener detalles del producto: $e');
+                  String searchTermForApi = searchTerm.toLowerCase(); // Convertir a minúsculas
+                  if (searchTermsMapping.containsKey(searchTermForApi)) {
+                    List<String> mappedTerms = searchTermsMapping[searchTermForApi]!;
+                    // Muestra los resultados para cada término mapeado
+                    for (String mappedTerm in mappedTerms) {
+                      try {
+                        // Obtiene los detalles del producto utilizando la función getProductDetails
+                        Map<String, dynamic> resultado = await getProductDetails(mappedTerm);
+                        // Navega a la página de resultados y muestra el resultado
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ResultadosPage(searchTerm: searchTerm, resultado: resultado),
+                          ),
+                        );
+                      } catch (e) {
+                        // Maneja errores aquí
+                        print('Error al obtener detalles del producto: $e');
+                      }
+                    }
+                  } else {
+                    print('Término de búsqueda no encontrado en el diccionario.');
                   }
                 },
               ),
