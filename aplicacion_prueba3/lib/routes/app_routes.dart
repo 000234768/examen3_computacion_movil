@@ -18,10 +18,6 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => RestableceContrasena());
       case '/registro_cliente':
         return MaterialPageRoute(builder: (_) => RegistroCliente());
-      case '/restablece_contrasena':
-        return MaterialPageRoute(builder: (_) => RestableceContrasena());
-      case '/registro_cliente':
-        return MaterialPageRoute(builder: (_) => RegistroCliente());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
