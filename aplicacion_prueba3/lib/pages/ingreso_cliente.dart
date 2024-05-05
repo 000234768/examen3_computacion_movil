@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../widgets/header.dart'; 
-import '../widgets/footer.dart'; 
+import '../widgets/login_header.dart'; 
 import 'home.dart'; 
 
 
@@ -49,7 +48,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyHeader(),
+      appBar: const MyLoginHeader(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -73,7 +72,6 @@ class LoginPage extends StatelessWidget {
           ],
         ),
       ),
-      //bottomNavigationBar: const MyFooter(),
     );
   }
 }
