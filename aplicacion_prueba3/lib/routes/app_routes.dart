@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/ingreso_cliente.dart';
-import 'package:flutter_application_1/pages/home.dart';
+import 'package:flutter_application_1/pages/pages.dart';
 
 class AppRouter {
   static const String initialRoute = '/ingreso_cliente'; 
@@ -12,6 +11,10 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => LoginPage());
       case '/home':
         return MaterialPageRoute(builder: (_) => HomePage());
+      case '/restablece_contrasena':
+        return MaterialPageRoute(builder: (_) => RestableceContrasena());
+      case '/registro_cliente':
+        return MaterialPageRoute(builder: (_) => RegistroCliente());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

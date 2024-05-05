@@ -5,3 +5,4 @@ export 'package:flutter_application_1/pages/resultados.dart';
 export 'package:flutter_application_1/pages/detalle_producto.dart';
 export 'package:flutter_application_1/pages/home.dart';
 export 'package:flutter_application_1/pages/carro_compras.dart';
+export 'package:flutter_application_1/pages/restablecimiento_contrasena.dart';
