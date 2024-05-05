@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_application_1/widgets/header.dart';
 import 'dart:convert';
+import 'package:flutter_application_1/widgets/header.dart';
+import 'package:flutter_application_1/widgets/footer.dart';
 
-// template para disparador de api
+// Modelo de Producto
 class Producto {
   final String nombre;
   final String imagen;
@@ -19,7 +20,7 @@ class Producto {
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
-
+  // Función para obtener los datos de la API
   Future<Producto> getProductDetails(String productName) async {
     final response = await http.get(
       Uri.parse(
@@ -47,90 +48,96 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MyHeader(), 
-      body: Expanded(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              FutureBuilder<Producto>(
-                future: getProductDetails('notebook'), 
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator();
-                  } else if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}');
-                  } else {
-                    final producto = snapshot.data!;
-                    return Column(
-                      children: [
-                        Image.network(producto.imagen),
-                        Text(producto.nombre),
-                        Text('\$${producto.costo.toStringAsFixed(2)}'),
-                      ],
-                    );
-                  }
-                },
-              ),
-              FutureBuilder<Producto>(
-                future: getProductDetails('mouse'), 
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator();
-                  } else if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}');
-                  } else {
-                    final producto = snapshot.data!;
-                    return Column(
-                      children: [
-                        Image.network(producto.imagen),
-                        Text(producto.nombre),
-                        Text('\$${producto.costo.toStringAsFixed(2)}'),
-                      ],
-                    );
-                  }
-                },
-              ),
-              FutureBuilder<Producto>(
-                future: getProductDetails('pantallas'),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator();
-                  } else if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}');
-                  } else {
-                    final producto = snapshot.data!;
-                    return Column(
-                      children: [
-                        Image.network(producto.imagen),
-                        Text(producto.nombre),
-                        Text('\$${producto.costo.toStringAsFixed(2)}'),
-                      ],
-                    );
-                  }
-                },
-              ),
-              FutureBuilder<Producto>(
-                future: getProductDetails('Teclados'), // Obtener datos de teclados
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator();
-                  } else if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}');
-                  } else {
-                    final producto = snapshot.data!;
-                    return Column(
-                      children: [
-                        Image.network(producto.imagen),
-                        Text(producto.nombre),
-                        Text('\$${producto.costo.toStringAsFixed(2)}'),
-                      ],
-                    );
-                  }
-                },
-              ),
-            ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: MyHeader(),
+        body: Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                FutureBuilder<Producto>(
+                  future: getProductDetails('notebook'),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else {
+                      final producto = snapshot.data!;
+                      return Column(
+                        children: [
+                          Image.network(producto.imagen),
+                          Text(producto.nombre),
+                          Text('\$${producto.costo.toStringAsFixed(2)}'),
+                        ],
+                      );
+                    }
+                  },
+                ),
+                FutureBuilder<Producto>(
+                  future: getProductDetails('mouse'),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else {
+                      final producto = snapshot.data!;
+                      return Column(
+                        children: [
+                          Image.network(producto.imagen),
+                          Text(producto.nombre),
+                          Text('\$${producto.costo.toStringAsFixed(2)}'),
+                        ],
+                      );
+                    }
+                  },
+                ),
+                FutureBuilder<Producto>(
+                  future: getProductDetails('pantallas'),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else {
+                      final producto = snapshot.data!;
+                      return Column(
+                        children: [
+                          Image.network(producto.imagen),
+                          Text(producto.nombre),
+                          Text('\$${producto.costo.toStringAsFixed(2)}'),
+                        ],
+                      );
+                    }
+                  },
+                ),
+                FutureBuilder<Producto>(
+                  future: getProductDetails('Teclados'),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else {
+                      final producto = snapshot.data!;
+                      return Column(
+                        children: [
+                          Image.network(producto.imagen),
+                          Text(producto.nombre),
+                          Text('\$${producto.costo.toStringAsFixed(2)}'),
+                        ],
+                      );
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
+        ),
+        bottomNavigationBar: SizedBox(
+          height: 100, // Altura del footer
+          child: MyFooter(),
         ),
       ),
     );

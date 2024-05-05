@@ -11,8 +11,8 @@ class LoginPage extends StatelessWidget {
   final TextEditingController _passwordController = TextEditingController();
 
   Future<void> _signIn(BuildContext context) async {
-    final String email = _emailController.text;
-    final String password = _passwordController.text;
+      final String email = _emailController.text;
+      final String password = _passwordController.text;
 
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -80,6 +80,6 @@ class LoginPage extends StatelessWidget {
           const MyFooter(),
         ],
       ),
-    );
+      );
   }
 }
